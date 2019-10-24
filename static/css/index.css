@@ -80,7 +80,7 @@ main{
 
 .modal{
     color: lightyellow;
-    font-weight: bold;
+    font-weight: 500;
     top: 100px;
     position: fixed;
     background-color: purple;
@@ -97,14 +97,15 @@ main{
 
 .modal-btn{
     background-color: lightyellow;
-    color: purple;
+    padding: 5px;
+    color: plum;
     border-radius: 5px;
     cursor: pointer;
     display: block;
     text-align: center;
-
+    font-weight: 600;
 }
 
 .modal-btn:hover{
-    background-color: plum;
+    background-color: purple;
 }
