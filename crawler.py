@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class Crawler:
     def __init__(self):
         pass
@@ -95,9 +96,9 @@ class Crawler:
         contador = 0
         list_of_dict_with_data = []
         while contador < len(bairros_list):
-            
-            all_items_dict = {}
 
+            all_items_dict = {}
+            all_items_dict['id'] = contador
             all_items_dict['bairro'] = bairros_list[contador]
             all_items_dict['city'] = cities_list[contador]
             all_items_dict['tipos'] = tipos_list[contador]
@@ -105,7 +106,7 @@ class Crawler:
             all_items_dict['endereco'] = get_endereco(links_list[contador])
             all_items_dict['descricao'] = get_descricao(links_list[contador])
             all_items_dict['valor'] = get_valor_primeiro_leilao(links_list[contador])
-
+            
             list_of_dict_with_data.append(all_items_dict)
 
             contador += 1
@@ -113,5 +114,5 @@ class Crawler:
         if len(list_of_dict_with_data) < 1:
             raise Exception('could not get information')
         
-
+        
         return list_of_dict_with_data

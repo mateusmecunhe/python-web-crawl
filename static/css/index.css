@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: plum;
+}
+
+header{
+    height: 40px;
+    color: plum;
+    background-color: purple;
+}
+
+header h1{
+    text-align: center;
+}
+
+main{
+    margin-top: 50px;
+
+}
+
+.hide{
+    display: none;
+}
+
+.container{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.grid-imoveis{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.unique-imovel{
+    max-width: 300px;
+    height: 250px;
+    overflow-y: auto;
+    background-color: salmon;
+    margin: 15px;
+    border-radius: 25px;
+    position: relative;
+}
+
+.card-imovel{
+    padding: 5%;
+    line-height: 120%;
+}
+
+.card-imovel button{
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    right: 10%;
+    bottom: 5%;
+    padding: 5%;
+    padding: 2%;
+    background-color: lightyellow;
+    border: none;
+    color: plum;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.card-imovel button:hover{
+    color: purple;
+    cursor: pointer;
+}
+
+.card-imovel .highlight{
+    font-weight: bold;
+}
+
+.modal{
+    color: lightyellow;
+    font-weight: bold;
+    top: 100px;
+    position: fixed;
+    background-color: purple;
+    z-index: 1;
+    width: 300px;
+    left: 50%;
+    margin-left: -150px;
+    padding: 30px;
+    border-radius: 25px;
+}
+
+
+.modal-btn{
+    background-color: lightyellow;
+    color: purple;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.modal-btn:hover{
+    background-color: plum;
+}

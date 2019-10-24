@@ -1,1 +1,58 @@
-hello, im working!
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon" />
+
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Crawler de imóveis em leilão</h1>
+    </header>
+    <main>
+
+        {% if list_of_leiloes|length < 1 %}
+        <p class="no-tasks-warning">não há imóveis</p>
+
+        {% else %}
+        <div class="container">
+
+            <div class="grid-imoveis">
+                {% for imovel in list_of_leiloes %}
+                <div class="unique-imovel">
+                    <div class="card-imovel">
+                        <p><span class="highlight">Tipo:</span> {{imovel.tipos}}</p>
+                        <p><span class="highlight">Cidade:</span> {{imovel.city}}</p>
+                        <p><span class="highlight">Bairro:</span> {{imovel.bairro}}</p>
+                        <p><span class="highlight">Endereço:</span> {{imovel.endereco}}</p>
+                        <p><span class="highlight">Valor:</span> R$ {{imovel.valor}}</p>
+                        <button id='saiba-mais-{{imovel.id}}' class="saiba-mais">saiba mais</button>
+
+                    </div>
+
+                    <div id="modal-{{imovel.id}}" class="modal hide">
+
+                        <p>{{imovel.descricao}} <br> <br>
+                        <span class="modal-btn" id="modal-btn-{{imovel.id}}">fechar</span></p>
+                        
+
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+        {% endif%}
+
+    </main>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>
