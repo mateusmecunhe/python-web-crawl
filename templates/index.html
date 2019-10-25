@@ -12,7 +12,7 @@
 <body>
 
     <header>
-        <h1>Crawler de imóveis em leilão</h1>
+        <h1>Crawler de leilões de imóvel</h1>
     </header>
     <main>
 
@@ -37,15 +37,17 @@
 
                     <div id="modal-{{imovel.id}}" class="modal hide">
 
-                        <p>{{imovel.descricao}} <br> <br>
-                        <span class="modal-btn" id="modal-btn-{{imovel.id}}">fechar</span></p>
-                        
-
+                        <p>{{imovel.descricao}} </p><br> <br>
                     </div>
+
+
+
+
+
                 </div>
 
                 {% endfor %}
-
+                <span class="modal-btn hide">fechar</span>
             </div>
 
         </div>
@@ -53,6 +55,7 @@
 
     </main>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/closing-btn.js') }}"></script>
 </body>
 
 </html>

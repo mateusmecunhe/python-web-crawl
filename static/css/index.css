@@ -24,7 +24,7 @@ main{
 }
 
 .hide{
-    display: none;
+    display: none !important;
 }
 
 .container{
@@ -36,7 +36,7 @@ main{
 
 .grid-imoveis{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .unique-imovel{
@@ -47,6 +47,8 @@ main{
     margin: 15px;
     border-radius: 25px;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card-imovel{
@@ -91,12 +93,13 @@ main{
     padding: 30px;
     border-radius: 25px;
     overflow-y: auto;
-    max-height: 70vh;
+    max-height: 200px;
+    max-height: 200px;
 }
 
 
 .modal-btn{
-    background-color: lightyellow;
+    background-color: white;
     padding: 5px;
     color: plum;
     border-radius: 5px;
@@ -104,8 +107,19 @@ main{
     display: block;
     text-align: center;
     font-weight: 600;
+    position: fixed;
+    z-index: 1;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
+    top: 300px;
 }
 
 .modal-btn:hover{
-    background-color: purple;
+    color: purple;
+}
+
+.yellow{
+    background-color: yellow;
+    font-weight: bold;
 }
