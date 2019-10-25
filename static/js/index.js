@@ -21,27 +21,18 @@ modal_closing_btns.forEach(function(b){
     })
 })
 
-function find_areas(element){
-    modals.forEach(function(m){
-        let str = m.innerText
-        let matches = str.matchAll(/M²/)
-        for (const match of matches) {
-            index = match.index
-            console.log(match.index);
+function find_areas(modal_element){
+        let str = modal_element.innerText
+        console.log(str)
+        let regexp = /²/
+        let matches = str.matchAll(regexp)
+        let matches_array = Array.from(matches)
+        console.log(matches_array)
 
-            console.log(str[index])
-            index++
-            console.log(str[index])
-            index--
-            let contador_de_espacos = 0
-            while (contador_de_espacos < 2){
-                if(str[index] == " "){
-                    contador_de_espacos++
-                }
-                console.log(str[index])
-                index--
 
-            }
-          }
-    })
-}
+        for (const match of matches_array) {
+            console.log(match)
+            console.log(match.index)
+        }
+    }
+           
