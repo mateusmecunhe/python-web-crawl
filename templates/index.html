@@ -36,6 +36,7 @@
                     </div>
 
                     <div id="modal-{{imovel.id}}" class="modal hide">
+                        <p class="link-information" style="display: none;">{{imovel.links}}</p>
 
                         <p>{{imovel.descricao}} </p><br> <br>
                     </div>
@@ -55,7 +56,6 @@
 
     </main>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/closing-btn.js') }}"></script>
 </body>
 
 </html>

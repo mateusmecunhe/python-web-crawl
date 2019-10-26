@@ -81,11 +81,11 @@ main{
 }
 
 .modal{
-    color: lightyellow;
+    color: purple;
     font-weight: 500;
     top: 100px;
     position: fixed;
-    background-color: purple;
+    background-color: lightgreen;
     z-index: 1;
     width: 300px;
     left: 50%;
@@ -122,4 +122,5 @@ main{
 .yellow{
     background-color: yellow;
     font-weight: bold;
+    user-select: all;
 }

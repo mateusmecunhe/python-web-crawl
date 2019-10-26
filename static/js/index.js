@@ -18,7 +18,8 @@ buttons.forEach(function(b){
         
         replace_areas(str, arr_of_strings, modals[btn_id_int])
 
-
+        aciona_no_clique_da_area()
+    
     })
 })
 
@@ -100,9 +101,75 @@ function find_areas(modal_element){
 
 function replace_areas(string, array_of_strings, element){
 
-    for(let counter = 0; counter <= array_of_strings.length; counter++){
+    for(let counter = 0; counter < array_of_strings.length; counter++){
         string = string.replace(array_of_strings[counter], `<span class='yellow area'>`+array_of_strings[counter]+`</span>`)
     }
     element.innerHTML = string
+
+}
+
+function aciona_no_clique_da_area(){
+    let areas = document.querySelectorAll('.area')
+
+    
+    
+    areas.forEach(function(a){
+        
+        a.addEventListener('click', function(){
+            let today = new Date()
+                let dd = today.getDate()
+                let mm = today.getMonth()+1
+                let yyyy = today.getFullYear()
+                let hh = today.getHours()
+                let min = today.getMinutes()
+                let ss = today.getSeconds()
+
+                if(dd<10){
+                    dd="0"+dd
+                }
+                if(mm<10){
+                    mm="0"+mm
+                }
+
+                if(min<10){
+                    min = "0"+min
+                }
+                if(ss<10){
+                    ss = "0"+ss
+                }
+
+            let timestamp = yyyy+'-'+mm+'-'+dd + " " + hh+":"+min+":"+ss
+
+            let link = a.parentElement.parentElement.firstElementChild.innerText
+            let texto = a.parentNode.innerText
+            let selecao = a.innerText
+
+            let json_info = 
+                {
+                    "timestamp": timestamp,
+                    "link": link,
+                    "texto": texto,
+                    "selecao": selecao
+                }
+
+            
+        
+            //após clicar, enviar json com informação ao servidor
+    
+            send_json_to_server(json_info)
+            
+            
+            
+        })
+    })
+}
+
+function send_json_to_server(json_imovel){
+    xhr = new XMLHttpRequest()
+    xhr.open("POST", "/")
+    xhr.setRequestHeader("Content-type", "application/json")
+   
+    console.log(json_imovel)
+    xhr.send(JSON.stringify(json_imovel))
 
 }
