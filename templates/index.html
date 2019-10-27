@@ -16,12 +16,18 @@
     </header>
     <main>
 
+
+        <!-- aqui inicio com um if, para checar se foi possível puxar a informação de sequer um imóvel através
+        do método Crawler.crawl() -->
         {% if list_of_leiloes|length < 1 %}
         <p class="no-tasks-warning">não há imóveis</p>
 
         {% else %}
         <div class="container">
 
+            <!-- também feito depois de consultar meus outros projetos com flask,
+            iniciei um loop por todos os imóveis, para que fossem colcoados dentro de uma div
+            e todas  essas divs e envoltas em um grid -->
             <div class="grid-imoveis">
                 {% for imovel in list_of_leiloes %}
                 <div class="unique-imovel">
@@ -34,6 +40,12 @@
                         <button id='saiba-mais-{{imovel.id}}' class="saiba-mais">saiba mais</button>
 
                     </div>
+
+                    <!-- aqui, por uma dificuldade, entendi que o melhor caminho seria colocar todas as informaçẽos
+                        no html para que pudesse acessá-las via javascript
+                        a dificuldade foi entender se/como comunicar direto entre javascript com o  cliente e 
+                        python no servidor.
+                        mais detalhes explicados no index.js-->
 
                     <div id="modal-{{imovel.id}}" class="modal hide">
                         <p class="link-information" style="display: none;">{{imovel.links}}</p>

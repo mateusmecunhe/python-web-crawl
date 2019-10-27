@@ -4,7 +4,9 @@ let modal_closing_btn = document.querySelector('.modal-btn')
 
 
 
-
+// esse trecho é responsável por chamar os métodos de encontrar as áreas dentro do texto de descrição,
+// trocar os textos das áreas pelo mesmo texto envolto num <span> e, por fim,
+// também chamar o método de tomar uma ação no clique do usuário na área
 buttons.forEach(function(b){
     let btn_id_str = b.id.match(/\d+/)[0]
     let btn_id_int = parseInt(btn_id_str, 10)
@@ -24,7 +26,7 @@ buttons.forEach(function(b){
 })
 
 
-
+//esse trecho é responsável por fechar o modal no clique de 'fechar'
 modal_closing_btn.addEventListener('click', function(){
     modal_closing_btn.classList.add('hide')
         modals.forEach(function(mod){
@@ -35,6 +37,8 @@ modal_closing_btn.addEventListener('click', function(){
 
 
 //function that goes through the description and returns an array of the texts containing areas in sqrd mts
+
+
 function find_areas(modal_element){
         //finding text of the refered modal
         let str = modal_element.innerText
@@ -42,9 +46,19 @@ function find_areas(modal_element){
         //finding all squared notations
         let regexp = /²/g
         let matches = str.matchAll(regexp)
+        //aqui gastei um tempo até entender, após ler muitos tópicos no stackoverflow e documentação da w3
+        //que o retorno do método matchAll não é um array, e sim um iterável.
         let matches_array = Array.from(matches)
 
         let array_of_strings_to_be_replaced = []
+
+        //aqui, senti dificuldade por conta do regex. Acredito que haja um jeito mais elegante de encontrar a área
+        //utilizando expressões regulares. Como ainda não conhecço profundamente regex,
+        //acabei utilizando bastante código em javascript para encontrar o texto com a área através de encontrar
+        //a potência de 2 no texto.
+
+        //Aqui, também, o método falha caso o input no texto do imóvel não use a notação m² ou M²
+        //(i.e. M2, m2)
         
         //not breaking when used in loops if there is no area in description
         if(matches_array.length == 0){
@@ -95,9 +109,14 @@ function find_areas(modal_element){
             
             
         } 
-        
+        //o retorno do método contem um array com strings que contém a área
         return array_of_strings_to_be_replaced
 }
+
+//esse método recebe como parâmetro o retorno do método find_areas()
+//o replace_areas(), além disso, recebe a string inteira do texto da descrição e a tag html que contém o texto.
+// Na string, substitui o texto pelo mesmo texto envolto numa span
+// no elemento HTML, substitui seu conteúdo pela nova string pós substituição
 
 function replace_areas(string, array_of_strings, element){
 
@@ -108,13 +127,16 @@ function replace_areas(string, array_of_strings, element){
 
 }
 
+//esse método é chamado após o clique no 'saiba mais', e encontra a cada vez o spans que substituem o texto original
+//através do método replace_areas.
+//Para cada span encontrado, há um disparador de evento de clique.
+
 function aciona_no_clique_da_area(){
     let areas = document.querySelectorAll('.area')
-
-    
     
     areas.forEach(function(a){
-        
+        //o disparador de evento de clique pega o momento exato do clique e guarda na variável today, 
+        //transformada na variável timestamp após formatação.
         a.addEventListener('click', function(){
             let today = new Date()
                 let dd = today.getDate()
@@ -140,6 +162,12 @@ function aciona_no_clique_da_area(){
 
             let timestamp = yyyy+'-'+mm+'-'+dd + " " + hh+":"+min+":"+ss
 
+            //também buscar o link, que está no html (mas não visível na página)
+            //aqui, acredito haver possibilidade de melhroar esse método caso haja maneira
+            //de comunicar direto entre js e python
+
+            //busca também os outros elementos para formar o json: texto e área selecioanda
+
             let link = a.parentElement.parentElement.firstElementChild.innerText
             let texto = a.parentNode.innerText
             let selecao = a.innerText
@@ -163,7 +191,7 @@ function aciona_no_clique_da_area(){
         })
     })
 }
-
+//método simples de enviar, via requisição post, json ao servidor
 function send_json_to_server(json_imovel){
     xhr = new XMLHttpRequest()
     xhr.open("POST", "/")
